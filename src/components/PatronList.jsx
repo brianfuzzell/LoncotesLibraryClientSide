@@ -24,6 +24,7 @@ export const PatronList = () => {
             <th>Id</th>
             <th>Name</th>
             <th>Status</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -34,6 +35,9 @@ export const PatronList = () => {
                 {p.firstName} {p.lastName}
               </td>
               <td>{p.isActive ? "Active" : "Inactive"}</td>
+              <td>
+                <Link to={`${p.id}`}>Details</Link>
+              </td>
             </tr>
           ))}
         </tbody>
