@@ -46,9 +46,12 @@ export const PatronList = () => {
                 <Link to={`${p.id}`}>Details</Link>
               </td>
               <td>
+                {p.isActive ? 
                 <Button type="submit" onClick={() => handleDeactivatePatron(p.id)}>
                 Deactivate
                 </Button>
+                : ""
+                }
               </td>
             </tr>
           ))}
