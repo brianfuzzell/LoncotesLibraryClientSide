@@ -24,3 +24,10 @@ export const createPatron = (patron) => {
     body: JSON.stringify(patron),
   }).then((res) => res.json());
 };
+
+export const deactivatePatron = (id) => {
+    return fetch(`${_apiUrl}/${id}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" }
+    })
+};
