@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Table, Button } from "reactstrap";
-import { editCheckout, getCheckouts } from "../../src/data/checkoutsData";
+import { createCheckout, getCheckouts } from "../../src/data/checkoutsData";
+import { useNavigate } from "react-router-dom";
 
 export const CheckoutList = () => {
   const [checkouts, setCheckouts] = useState([]);

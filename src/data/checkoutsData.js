@@ -6,7 +6,15 @@ export const getCheckouts = () => {
 
 export const editCheckout = (id) => {
   return fetch(`${_apiUrl}/${id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-    })
-}
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+  });
+};
+
+export const createCheckout = (checkout) => {
+  return fetch(_apiUrl, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(checkout),
+  }).then((res) => res.json());
+};

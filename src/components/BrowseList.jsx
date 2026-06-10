@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { Table } from "reactstrap";
+import { Table, Button } from "reactstrap";
 import { getAvailableMaterials } from "../data/materialsData";
+import { Link } from "react-router-dom";
 
 export const BrowseList = () => {
-  // Are these the correct state names ?
   const [availableMaterials, setAvailableMaterials] = useState([]);
 
   useEffect(() => {
@@ -22,6 +22,7 @@ export const BrowseList = () => {
             <th>Title</th>
             <th>Type</th>
             <th>Genre</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -31,6 +32,11 @@ export const BrowseList = () => {
               <td>{am.materialName}</td>
               <td>{am.materialType.name}</td>
               <td>{am.genre.name}</td>
+              <td>
+                <Link to={`/checkouts/${am.id}/new`}>
+                  <Button type="submit">Checkout</Button>
+                </Link>
+              </td>
             </tr>
           ))}
         </tbody>
