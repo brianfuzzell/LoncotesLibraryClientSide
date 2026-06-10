@@ -22,7 +22,6 @@ export const BrowseList = () => {
             <th>Title</th>
             <th>Type</th>
             <th>Genre</th>
-            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -30,8 +29,8 @@ export const BrowseList = () => {
             <tr key={`availableMaterials-${am.id}`}>
               <th scope="row">{am.id}</th>
               <td>{am.materialName}</td>
-              <td>{am.materialType}</td>
-              <td>{am.genre}</td>
+              <td>{am.materialType.name}</td>
+              <td>{am.genre.name}</td>
             </tr>
           ))}
         </tbody>
