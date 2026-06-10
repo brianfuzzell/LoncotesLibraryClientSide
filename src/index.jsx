@@ -12,6 +12,7 @@ import { PatronEdit } from "./components/PatronEdit";
 import { CheckoutList } from "./components/CheckoutList";
 import { BrowseList } from "./components/BrowseList";
 import { CheckoutForm } from "./components/CheckoutForm";
+import { OverdueCheckoutsList } from "./components/OverdueCheckoutsList";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -34,6 +35,9 @@ root.render(
         </Route>
         <Route path="browse">
           <Route index element={<BrowseList />} />
+        </Route>
+        <Route path="overdue">
+          <Route index element={<OverdueCheckoutsList />} />
         </Route>
       </Route>
     </Routes>

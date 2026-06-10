@@ -18,3 +18,7 @@ export const createCheckout = (checkout) => {
     body: JSON.stringify(checkout),
   }).then((res) => res.json());
 };
+
+export const getOverdueCheckouts = () => {
+  return fetch(`${_apiUrl}/overdue`).then((r) => r.json());
+}
