@@ -1,45 +1,51 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { Form, FormGroup, Label, Input } from "reactstrap";
-import { getCheckouts } from "../../src/data/checkoutsData";
+import { useParams, useNavigate } from "react-router-dom";
+import { Form, FormGroup, Label, Input, Button } from "reactstrap";
+import { getMaterial } from "../data/materialsData";
+import { getPatron } from "../data/patronsData";
 
 export const CheckoutForm = () => {
   const { id } = useParams();
-  const [checkouts, setCheckouts] = useState([]);
-    const [checkoutId, setCheckoutId] = useState(0);
-    const navigate = useNavigate();
+  const [patronId, setPatronId] = useState("");
+  const [material, setMaterial] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    getCheckouts().then(setCheckouts);
+    getMaterial(id).then(setMaterial);
   }, []);
 
-
-  useEffect(() => {
-    fetch("api/checkouts")
-    .then((res) => res.json())
-    .then((data) => {
-        setCheckouts(data);
-        if (data.length > 0) {
-            setCheckoutId(data[0].id);
-        }
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const response = await fetch("/api/checkouts", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ materialId: id, patronId: patronId }),
     });
-  }, []);
+    const newCheckout = await response.json();
+    navigate(`/browse`);
+  };
+
+  if (!material) {
+    return null;
+  }
 
   return (
     <div className="container">
       <div className="sub-menu bg-light">
         <h4>Checkout Materials</h4>
       </div>
-      <Form>
+      <h6>{material.materialName}</h6>
+      <Form onSubmit={handleSubmit}>
         <FormGroup>
           <Input
-            id="patron-id"
-            name="patronId"
+            id="patronId"
             placeholder="Enter Patron's ID"
             type="text"
+            value={patronId}
+            onChange={(e) => setPatronId(e.target.value)}
           />
         </FormGroup>
-        <Button>Submit</Button>
+        <Button type="submit">Submit</Button>
       </Form>
     </div>
   );
