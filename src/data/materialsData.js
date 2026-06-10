@@ -23,3 +23,7 @@ export const removeMaterial = (id) => {
     headers: { "Content-Type": "application/json" },
   });
 };
+
+export const getAvailableMaterials = () => {
+  return fetch(`${_apiUrl}/available`).then((r) => r.json());
+}
