@@ -16,3 +16,14 @@ export const createMaterial = (material) => {
     body: JSON.stringify(material),
   }).then((res) => res.json());
 };
+
+export const removeMaterial = (id) => {
+  return fetch(`${_apiUrl}/${id}`, {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+  });
+};
+
+export const getAvailableMaterials = () => {
+  return fetch(`${_apiUrl}/available`).then((r) => r.json());
+}
